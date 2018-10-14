@@ -10,6 +10,8 @@
               id="cidadeSearch"
               aria-describedby="city"
               placeholder="Nome da cidade"
+              v-model="searchCidade"
+              @input="$emit('setSearch', $event.target.value)"
             >
             <small id="emailHelp" class="form-text text-muted">Procure pela cidade desejada</small>
           </div>
