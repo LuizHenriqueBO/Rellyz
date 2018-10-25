@@ -10,14 +10,17 @@
               id="cidadeSearch"
               aria-describedby="city"
               placeholder="Nome da cidade"
-              v-model="searchCidade"
-              @input="$emit('setSearch', $event.target.value)"
+              @input="$emit('setSearchCity', $event.target.value)"
             >
             <small id="emailHelp" class="form-text text-muted">Procure pela cidade desejada</small>
           </div>
         </div>
         <div class="col">
-          <button type="submit" class="btn btn-primary">Buscar</button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            @click.prevent="$emit('searchResult')"
+          >Buscar</button>
         </div>
       </form>
     </div>
