@@ -13,16 +13,19 @@ export default {
   name: 'Weather',
   props: ['addressData'],
   watch: {
-    addressData: (self) => {
-      console.log('self', self);
-      getIdByCityName(self.citySearched, self.stateSearched)
-        .then((responseId) => {
-          console.log(responseId);
-          getWeatherByName(responseId.id)
-            .then((responseData) => {
-              console.log(responseData);
-            });
-        });
+    addressData: {
+      handler(val) {
+        console.log(val, 'val');
+        getIdByCityName(this.citySearched, this.stateSearched)
+          .then((responseId) => {
+            console.log(responseId);
+            getWeatherByName(responseId.id)
+              .then((responseData) => {
+                console.log(responseData);
+              });
+          });
+      },
+      deep: true,
     },
   },
 };
