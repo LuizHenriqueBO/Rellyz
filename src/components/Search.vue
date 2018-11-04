@@ -11,6 +11,21 @@
               aria-describedby="city"
               placeholder="Nome da cidade"
               @input="$emit('setSearchCity', $event.target.value)"
+              required
+            >
+            <small id="emailHelp" class="form-text text-muted">Procure pela cidade desejada</small>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="UFSearch"
+              aria-describedby="UF"
+              placeholder="UF"
+              @input="$emit('setSearchState', $event.target.value)"
+              required
             >
             <small id="emailHelp" class="form-text text-muted">Procure pela cidade desejada</small>
           </div>

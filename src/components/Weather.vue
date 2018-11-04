@@ -1,21 +1,31 @@
 <template>
   <div>
-    <p>{{city}}</p>
+    <div class="container">
+      <p>{{addressData.citySearched}} - {{addressData.stateSearched}}</p>
+    </div>
   </div>
 </template>
 
 <script>
-import getWeatherByName from '../services/cityWeather';
+import { getIdByCityName, getWeatherByName } from '../services/cityWeather';
 
 export default {
   name: 'Weather',
-  props: ['city'],
+  props: ['addressData'],
   watch: {
-    city: (self) => {
-      getWeatherByName(self)
-        .then((response) => {
-          console.log(response);
-        });
+    addressData: {
+      handler(val) {
+        console.log(val, 'val');
+        getIdByCityName(this.citySearched, this.stateSearched)
+          .then((responseId) => {
+            console.log(responseId);
+            getWeatherByName(responseId.id)
+              .then((responseData) => {
+                console.log(responseData);
+              });
+          });
+      },
+      deep: true,
     },
   },
 };

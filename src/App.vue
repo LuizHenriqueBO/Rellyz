@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <Header></Header>
-    <Search @setSearchCity="setSearchCity" @searchResult="searchResult"></Search>
-    <Weather v-bind:city="citySearched"></Weather>
+    <Search
+      @setSearchCity="setSearchCity"
+      @setSearchState="setSearchState"
+      @searchResult="searchResult">
+    </Search>
+    <Weather v-bind:addressData="searchedData"></Weather>
   </div>
 </template>
 
@@ -21,15 +25,23 @@ export default {
   data() {
     return {
       cityName: '',
-      citySearched: '',
+      stateName: '',
+      searchedData: {
+        citySearched: '',
+        stateSearched: '',
+      },
     };
   },
   methods: {
     setSearchCity(result) {
       this.cityName = result;
     },
+    setSearchState(result) {
+      this.stateName = result;
+    },
     searchResult() {
-      this.citySearched = this.cityName;
+      this.searchedData.citySearched = this.cityName;
+      this.searchedData.stateSearched = this.stateName;
     },
   },
 };

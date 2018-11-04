@@ -1,7 +1,20 @@
 import axios from 'axios';
 
 const api = 'http://apiadvisor.climatempo.com.br/api/v1/';
-const token = 'gerartoken';
+const token = 'token';
+
+const getIdByCityName = () => {
+  const result = axios.get(`${api}locale/city`, {
+    params: {
+      name: 'Curitiba',
+      state: 'PR',
+      token,
+    },
+  });
+  return result;
+};
+
+
 const getWeatherByName = () => {
   const result = axios.get(`${api}locale/`, {
     params: {
@@ -12,4 +25,4 @@ const getWeatherByName = () => {
   return result;
 };
 
-export default getWeatherByName;
+export { getIdByCityName, getWeatherByName };
